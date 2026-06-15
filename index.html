@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>钱去哪了 - 帮你算公司最大的问题值多少钱</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    body {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      text-align: center;
+    }
+    .logo { font-size: 36px; font-weight: 800; margin-bottom: 8px; letter-spacing: 2px; }
+    .logo span { color: #e94560; }
+    .tagline { font-size: 16px; color: rgba(255,255,255,0.7); margin-bottom: 40px; }
+    .card {
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 28px 24px;
+      max-width: 360px;
+      width: 100%;
+      margin-bottom: 30px;
+    }
+    .card h2 { font-size: 18px; margin-bottom: 16px; color: #e94560; }
+    .card p { font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.85); margin-bottom: 10px; }
+    .card .step { display: flex; align-items: flex-start; margin-bottom: 12px; }
+    .card .step-num {
+      background: #e94560;
+      color: #fff;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-right: 10px;
+      margin-top: 2px;
+    }
+    .card .step-text { font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.85); text-align: left; }
+    .hint {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+    .arrow {
+      position: fixed;
+      right: 20px;
+      bottom: 90px;
+      font-size: 24px;
+      animation: bounce 1.5s ease-in-out infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">钱去哪了<span>？</span></div>
+  <div class="tagline">帮你算公司最大的问题值多少钱</div>
+  
+  <div class="card">
+    <h2>开始你的诊断</h2>
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-text">点击右下角的对话图标</div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-text">告诉我你所在的行业</div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-text">回答4个关键问题，获得精准诊断</div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-text">拿到你的痛点标价报告</div>
+    </div>
+  </div>
+
+  <div class="hint">👇 点击右下角图标，开始对话</div>
+  <div class="arrow">👉</div>
+
+  <!-- Install SDK -->
+  <script src="https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/1.2.0-beta.20/libs/cn/index.js"></script>
+  <script>
+    new CozeWebSDK.WebChatClient({
+      config: {
+        type: 'bot',
+        bot_id: '7651087987916472383',
+      },
+      auth: {
+        type: 'token',
+        token: 'pat_WOUpImGwkl6PGXZ6ZnnGqzId8spChghm1eVHZwmp4veWthKfjDmuNLmEkilxEY8C',
+        onRefreshToken: async () => 'pat_WOUpImGwkl6PGXZ6ZnnGqzId8spChghm1eVHZwmp4veWthKfjDmuNLmEkilxEY8C',
+      },
+      userInfo: {
+        id: 'user',
+        url: 'https://lf-coze-web-cdn.coze.cn/obj/eden-cn/lm-lgvj/ljhwZthlaukjlkulzlp/coze/coze-logo.png',
+        nickname: '客户',
+      },
+      ui: {
+        base: {
+          icon: 'https://lf-coze-web-cdn.coze.cn/obj/eden-cn/lm-lgvj/ljhwZthlaukjlkulzlp/coze/chatsdk-logo.png',
+          layout: 'mobile',
+          lang: 'zh-CN',
+          zIndex: 1000,
+        },
+        header: {
+          isShow: true,
+          isNeedClose: true,
+        },
+        asstBtn: {
+          isNeed: true,
+        },
+        footer: {
+          isShow: true,
+          expressionText: '钱去哪了 · 让问题有标价',
+        },
+        chatBot: {
+          title: '钱去哪了',
+          uploadable: false,
+          width: 390,
+        },
+      },
+    });
+  </script>
+</body>
+</html>
