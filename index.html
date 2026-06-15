@@ -266,7 +266,31 @@
         loadEl.style.animation = 'none';
       }
     })();
+
+    // 监听SDK聊天窗口状态，控制👇显隐
+    (function() {
+      var arrow = document.getElementById('sdk-hint-arrow');
+      var observer = new MutationObserver(function() {
+        // SDK聊天窗口打开时会有coze-chat-container之类的元素可见
+        var chatContainer = document.querySelector('[class*="coze-chat"]') || 
+                           document.querySelector('[class*="chat-container"]') ||
+                           document.querySelector('iframe[title*="chat"]') ||
+                           document.querySelector('[class*="webchat"]');
+        if (arrow) {
+          // 检查是否有可见的聊天面板（不是浮动按钮）
+          var chatPanel = document.querySelector('[class*="chat-window"]') ||
+                         document.querySelector('[class*="chat-panel"]') ||
+                         document.querySelector('[class*="chat-view"]');
+          if (chatPanel && chatPanel.offsetHeight > 0) {
+            arrow.style.display = 'none';
+          } else {
+            arrow.style.display = 'block';
+          }
+        }
+      });
+      observer.observe(document.body, { childList: true, subtree: true, attributes: true });
+    })();
   </script>
-<div class="sdk-hint-arrow">👇</div>
+<div class="sdk-hint-arrow" id="sdk-hint-arrow">👇</div>
 </body>
 </html>
