@@ -51,6 +51,11 @@
     @keyframes pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
     .arrow { position: fixed; right: 20px; bottom: 90px; font-size: 24px; animation: bounce 1.5s ease-in-out infinite; }
     @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    /* 隐藏推荐问题按钮，防止干扰客户按流程回答 */
+    [class*="suggestion"], [class*="recommended"], [class*="quick-reply"],
+    [class*="question-item"], [class*="prompt-item"] {
+      display: none !important;
+    }
     #chat-loading {
       position: fixed; bottom: 30px; right: 30px;
       background: rgba(233,69,96,0.9); color: #fff;
