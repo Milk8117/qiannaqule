@@ -30,7 +30,6 @@
       margin-bottom: 30px;
     }
     .card h2 { font-size: 18px; margin-bottom: 16px; color: #e94560; }
-    .card p { font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.85); margin-bottom: 10px; }
     .card .step { display: flex; align-items: flex-start; margin-bottom: 12px; }
     .card .step-num {
       background: #e94560;
@@ -100,6 +99,13 @@
   <!-- Install SDK -->
   <script src="https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/1.2.0-beta.20/libs/cn/index.js"></script>
   <script>
+    // 每个访客生成唯一ID，实现会话隔离
+    let visitorId = localStorage.getItem('qiannaqule_visitor_id');
+    if (!visitorId) {
+      visitorId = 'v_' + Date.now() + '_' + Math.random().toString(36).substr(2, 8);
+      localStorage.setItem('qiannaqule_visitor_id', visitorId);
+    }
+
     new CozeWebSDK.WebChatClient({
       config: {
         type: 'bot',
@@ -111,8 +117,7 @@
         onRefreshToken: async () => 'pat_bR8P9h0bTXYFW7SlYt7L08SFbxzNLb2pT8RukZbvJn6MMk86TcdZH98SA5ABz7QO',
       },
       userInfo: {
-        id: 'user',
-        url: 'https://lf-coze-web-cdn.coze.cn/obj/eden-cn/lm-lgvj/ljhwZthlaukjlkulzlp/coze/coze-logo.png',
+        id: visitorId,
         nickname: '客户',
       },
       ui: {
